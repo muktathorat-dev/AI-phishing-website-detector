@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History - Phishing Detector</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 0 auto 30px auto;
+            padding: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        th {
+            background: rgba(102, 126, 234, 0.5);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 15px;
+        }
+        td {
+            padding: 12px 15px;
+            color: rgba(255,255,255,0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 14px;
+        }
+        tr:hover td {
+            background: rgba(255,255,255,0.05);
+        }
+        .safe { color: #00c864; font-weight: bold; }
+        .phishing { color: #ff4444; font-weight: bold; }
+        .empty {
+            text-align: center;
+            color: rgba(255,255,255,0.4);
+            padding: 40px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📋 URL Check History</h1>
+    <a href="/" class="back-btn">⬅ Back to Home</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>URL</th>
+                <th>Result</th>
+                <th>Confidence</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if history %}
+                {% for item in history %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ item.url[:50] }}...</td>
+                    <td class="
+                        {% if item.result == 'Safe' %}safe
+                        {% else %}phishing{% endif %}">
+                        {{ item.result }}
+                    </td>
+                    <td>{{ item.confidence }}</td>
+                    <td>{{ item.time }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5" class="empty">
+                        No URLs checked yet!
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>

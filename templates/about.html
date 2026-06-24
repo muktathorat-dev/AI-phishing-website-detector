@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - Phishing Detector</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 0 auto 30px auto;
+            padding: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            width: 380px;
+        }
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .card p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+        .stat-box {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+        .stat {
+            background: rgba(102,126,234,0.2);
+            border: 1px solid rgba(102,126,234,0.4);
+            border-radius: 15px;
+            padding: 20px 30px;
+            text-align: center;
+        }
+        .stat h3 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+        .stat p {
+            color: rgba(255,255,255,0.6);
+            font-size: 13px;
+        }
+        .flow {
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+        }
+        .flow h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-align: center;
+        }
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: rgba(255,255,255,0.8);
+            font-size: 14px;
+        }
+        .step-num {
+            background: #667eea;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .arrow {
+            text-align: center;
+            color: #667eea;
+            font-size: 20px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>ℹ️ About This Project</h1>
+    <p class="subtitle">
+        AI Based Phishing Website Detection System
+    </p>
+
+    <a href="/" class="back-btn">⬅ Back to Home</a>
+
+    <!-- Stats -->
+    <div class="stat-box">
+        <div class="stat">
+            <h3>96.94%</h3>
+            <p>Model Accuracy</p>
+        </div>
+        <div class="stat">
+            <h3>11,430</h3>
+            <p>URLs Trained On</p>
+        </div>
+        <div class="stat">
+            <h3>87</h3>
+            <p>Features Analyzed</p>
+        </div>
+        <div class="stat">
+            <h3>100</h3>
+            <p>Decision Trees Used</p>
+        </div>
+    </div>
+
+    <!-- How it works -->
+    <div class="flow">
+        <h2>⚙️ How It Works</h2>
+        <div class="step">
+            <div class="step-num">1</div>
+            User enters any URL in the input box
+        </div>
+        <div class="arrow">↓</div>
+        <div class="step">
+            <div class="step-num">2</div>
+            System extracts 87 features from the URL
+            (length, dots, https, subdomains etc)
+        </div>
+        <div class="arrow">↓</div>
+        <div class="step">
+            <div class="step-num">3</div>
+            Features are passed to Random Forest ML Model
+        </div>
+        <div class="arrow">↓</div>
+        <div class="step">
+            <div class="step-num">4</div>
+            Model compares with patterns learned from
+            11,430 real URLs
+        </div>
+        <div class="arrow">↓</div>
+        <div class="step">
+            <div class="step-num">5</div>
+            Result shown — Safe or Phishing with
+            confidence score
+        </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="cards">
+        <div class="card">
+            <h2>🤖 ML Model Used</h2>
+            <p>
+                This project uses <strong
+                style="color:white">Random Forest Classifier</strong>
+                — an ensemble learning method that uses
+                100 decision trees to make predictions.
+                It was trained on 11,430 URLs and achieved
+                an accuracy of 96.94% on test data.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>🛡️ Why This Project?</h2>
+            <p>
+                Phishing attacks are one of the most common
+                cyber threats today. Millions of people lose
+                their personal data and money every year due
+                to fake websites. This tool helps users verify
+                any URL before clicking on it — protecting
+                them from cyber attacks.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>📊 Dataset Used</h2>
+            <p>
+                The model was trained on the
+                <strong style="color:white">
+                Web Page Phishing Detection Dataset</strong>
+                from Kaggle — containing 11,430 URLs with
+                87 features each, including both legitimate
+                and phishing websites from real world data.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>💻 Technologies Used</h2>
+            <p>
+                <strong style="color:white">Python</strong>
+                — Core programming language<br><br>
+                <strong style="color:white">Flask</strong>
+                — Web framework for backend<br><br>
+                <strong style="color:white">Scikit-learn</strong>
+                — Machine learning library<br><br>
+                <strong style="color:white">Pandas</strong>
+                — Data processing<br><br>
+                <strong style="color:white">HTML/CSS/JS</strong>
+                — Frontend
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
