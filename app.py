@@ -1,3 +1,4 @@
+from flask_cors import CORS
 from flask import Flask, request, render_template, jsonify
 import pickle
 import pandas as pd
@@ -8,6 +9,7 @@ import json
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 # Load trained model
 model = pickle.load(open('model.pkl', 'rb'))
