@@ -75,6 +75,7 @@
                 <th>Result</th>
                 <th>Confidence</th>
                 <th>Time</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -90,6 +91,15 @@
                     </td>
                     <td>{{ item.confidence }}</td>
                     <td>{{ item.time }}</td>
+                    <td>
+    <a href="/delete/{{ loop.index0 }}" 
+       style="color: #ff4444; 
+              text-decoration: none; 
+              font-size: 13px;
+              cursor: pointer;">
+        🗑️ Delete
+    </a>
+</td>
                 </tr>
                 {% endfor %}
             {% else %}

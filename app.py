@@ -1,5 +1,5 @@
+from flask import Flask, request, render_template, jsonify, redirect
 from flask_cors import CORS
-from flask import Flask, request, render_template, jsonify
 import pickle
 import pandas as pd
 import re
@@ -19,7 +19,7 @@ df = pd.read_csv('dataset.csv')
 df = df.drop(['url', 'status'], axis=1)
 feature_columns = df.columns.tolist()
 
-# Load history from file
+# History file
 HISTORY_FILE = 'history.json'
 
 def load_history():
@@ -73,6 +73,7 @@ def history_page():
 def stats():
     history = load_history()
     return render_template('stats.html', history=history)
+
 @app.route('/get_stats')
 def get_stats():
     history = load_history()
@@ -84,6 +85,14 @@ def get_stats():
         'safe': safe,
         'phishing': phishing
     })
+
+@app.route('/delete/<int:index>')
+def delete_history(index):
+    history = load_history()
+    if 0 <= index < len(history):
+        history.pop(index)
+        save_history(history)
+    return redirect('/history')
 
 @app.route('/about')
 def about():
@@ -106,7 +115,6 @@ def predict():
         score = round(probability[1] * 100, 2)
         status = "Safe"
 
-    # Load, update and save history
     history = load_history()
     history.append({
         'url': url,
