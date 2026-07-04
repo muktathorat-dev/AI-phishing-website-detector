@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History - Phishing Detector</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,6 +30,11 @@
             text-decoration: none;
             font-weight: 600;
         }
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+        }
         table {
             width: 90%;
             margin: 0 auto;
@@ -36,6 +42,7 @@
             background: rgba(255,255,255,0.05);
             border-radius: 15px;
             overflow: hidden;
+            min-width: 500px;
         }
         th {
             background: rgba(102, 126, 234, 0.5);
@@ -50,9 +57,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
             font-size: 14px;
         }
-        tr:hover td {
-            background: rgba(255,255,255,0.05);
-        }
+        tr:hover td { background: rgba(255,255,255,0.05); }
         .safe { color: #00c864; font-weight: bold; }
         .phishing { color: #ff4444; font-weight: bold; }
         .empty {
@@ -62,60 +67,56 @@
             font-size: 16px;
         }
         @media (max-width: 768px) {
-    table { width: 100%; font-size: 12px; }
-    th, td { padding: 8px 5px; }
-    h1 { font-size: 20px; }
-    body { padding: 20px 10px; }
-}
+            body { padding: 20px 10px; }
+            h1 { font-size: 20px; }
+            table { width: 100%; font-size: 12px; }
+            th, td { padding: 8px 5px; }
+        }
     </style>
 </head>
 <body>
     <h1>📋 URL Check History</h1>
     <a href="/" class="back-btn">⬅ Back to Home</a>
 
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>URL</th>
-                <th>Result</th>
-                <th>Confidence</th>
-                <th>Time</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% if history %}
-                {% for item in history %}
+    <div class="table-wrapper">
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ item.url[:50] }}...</td>
-                    <td class="
-                        {% if item.result == 'Safe' %}safe
-                        {% else %}phishing{% endif %}">
-                        {{ item.result }}
-                    </td>
-                    <td>{{ item.confidence }}</td>
-                    <td>{{ item.time }}</td>
-                    <td>
-    <a href="/delete/{{ loop.index0 }}" 
-       style="color: #ff4444; 
-              text-decoration: none; 
-              font-size: 13px;
-              cursor: pointer;">
-        🗑️ Delete
-    </a>
-</td>
+                    <th>#</th>
+                    <th>URL</th>
+                    <th>Result</th>
+                    <th>Confidence</th>
+                    <th>Time</th>
+                    <th>Action</th>
                 </tr>
-                {% endfor %}
-            {% else %}
-                <tr>
-                    <td colspan="5" class="empty">
-                        No URLs checked yet!
-                    </td>
-                </tr>
-            {% endif %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% if history %}
+                    {% for item in history %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ item.url[:50] }}...</td>
+                        <td class="{% if item.result == 'Safe' %}safe{% else %}phishing{% endif %}">
+                            {{ item.result }}
+                        </td>
+                        <td>{{ item.confidence }}</td>
+                        <td>{{ item.time }}</td>
+                        <td>
+                            <a href="/delete/{{ loop.index0 }}"
+                               style="color: #ff4444; text-decoration: none;
+                                      font-size: 13px; cursor: pointer;">
+                                🗑️ Delete
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="empty">No URLs checked yet!</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
