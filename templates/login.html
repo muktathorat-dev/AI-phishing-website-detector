@@ -13,13 +13,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
         .container {
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 20px;
-            padding: 40px;
-            width: 380px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 380px;
             text-align: center;
         }
         .shield { font-size: 50px; margin-bottom: 10px; }
@@ -38,6 +40,23 @@
         }
         input::placeholder { color: rgba(255,255,255,0.4); }
         input:focus { border-color: #667eea; }
+        .password-wrapper {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        .password-wrapper input {
+            margin-bottom: 0;
+            padding-right: 45px;
+        }
+        .toggle-pass {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+            user-select: none;
+        }
         button {
             width: 100%;
             padding: 13px;
@@ -60,10 +79,7 @@
             margin-bottom: 15px;
             font-size: 14px;
         }
-        .link {
-            color: rgba(255,255,255,0.5);
-            font-size: 14px;
-        }
+        .link { color: rgba(255,255,255,0.5); font-size: 14px; }
         .link a { color: #667eea; text-decoration: none; }
     </style>
 </head>
@@ -80,8 +96,11 @@
         <form method="POST">
             <input type="text" name="username"
                 placeholder="Username" required>
-            <input type="password" name="password"
-                placeholder="Password" required>
+            <div class="password-wrapper">
+                <input type="password" name="password"
+                    id="loginPass" placeholder="Password" required>
+                <span class="toggle-pass" onclick="togglePass('loginPass', this)">👁️</span>
+            </div>
             <button type="submit">🔐 Login</button>
         </form>
 
@@ -90,5 +109,18 @@
             <a href="/register">Register here</a>
         </p>
     </div>
+
+    <script>
+        function togglePass(id, icon) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                icon.textContent = '👁️';
+            }
+        }
+    </script>
 </body>
 </html>
