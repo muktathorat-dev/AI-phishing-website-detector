@@ -46,7 +46,8 @@
         }
         .password-wrapper input {
             margin-bottom: 0;
-            padding-right: 45px;
+            padding-right: 55px;
+            width: 100%;
         }
         .toggle-pass {
             position: absolute;
@@ -54,8 +55,11 @@
             top: 50%;
             transform: translateY(-50%);
             cursor: pointer;
-            font-size: 18px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #667eea;
             user-select: none;
+            letter-spacing: 0.5px;
         }
         button {
             width: 100%;
@@ -99,7 +103,8 @@
             <div class="password-wrapper">
                 <input type="password" name="password"
                     id="loginPass" placeholder="Password" required>
-                <span class="toggle-pass" onclick="togglePass('loginPass', this)">👁️</span>
+                <span class="toggle-pass"
+                    onclick="togglePass('loginPass', this)">SHOW</span>
             </div>
             <button type="submit">🔐 Login</button>
         </form>
@@ -115,10 +120,10 @@
             const input = document.getElementById(id);
             if (input.type === 'password') {
                 input.type = 'text';
-                icon.textContent = '🙈';
+                icon.textContent = 'HIDE';
             } else {
                 input.type = 'password';
-                icon.textContent = '👁️';
+                icon.textContent = 'SHOW';
             }
         }
     </script>
