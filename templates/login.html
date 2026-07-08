@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PhishGuard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            width: 380px;
+            text-align: center;
+        }
+        .shield { font-size: 50px; margin-bottom: 10px; }
+        h1 { color: white; font-size: 24px; margin-bottom: 5px; }
+        p { color: rgba(255,255,255,0.5); margin-bottom: 25px; font-size: 14px; }
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+        input::placeholder { color: rgba(255,255,255,0.4); }
+        input:focus { border-color: #667eea; }
+        button {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        button:hover { opacity: 0.9; }
+        .error {
+            background: rgba(255,68,68,0.2);
+            border: 1px solid rgba(255,68,68,0.4);
+            color: #ff4444;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .link {
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+        .link a { color: #667eea; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="shield">🛡️</div>
+        <h1>PhishGuard</h1>
+        <p>Login to check URLs</p>
+
+        {% if error %}
+        <div class="error">❌ {{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            <input type="text" name="username"
+                placeholder="Username" required>
+            <input type="password" name="password"
+                placeholder="Password" required>
+            <button type="submit">🔐 Login</button>
+        </form>
+
+        <p class="link">
+            Don't have an account?
+            <a href="/register">Register here</a>
+        </p>
+    </div>
+</body>
+</html>
